@@ -1,0 +1,53 @@
+variable "region" {
+  description = "AWS region"
+  type        = string
+  default     = "ap-southeast-1"
+}
+
+variable "name_prefix" {
+  description = "Prefix for resource names"
+  type        = string
+  default     = "argocd-aws-helm"
+}
+
+variable "vpc_cidr" {
+  description = "CIDR block for the VPC"
+  type        = string
+  default     = "10.0.0.0/16"
+}
+
+variable "public_subnet_cidr" {
+  description = "CIDR block for the public subnet"
+  type        = string
+  default     = "10.0.1.0/24"
+}
+
+variable "private_subnet_cidr" {
+  description = "CIDR block for the private subnet"
+  type        = string
+  default     = "10.0.2.0/24"
+}
+
+variable "availability_zone" {
+  description = "Availability zone for subnets"
+  type        = string
+  default     = "ap-southeast-1a"
+}
+
+variable "cluster_name" {
+  description = "EKS cluster name"
+  type        = string
+  default     = "fullstack-app-cluster"
+}
+
+variable "node_instance_type" {
+  description = "EKS node instance type"
+  type        = string
+  default     = "t3.medium"
+}
+
+variable "node_count" {
+  description = "Number of EKS nodes"
+  type        = number
+  default     = 2
+}
