@@ -1,0 +1,35 @@
+---
+server:
+  service:
+    type: "ClusterIP"
+  ingress:
+    enabled: true
+    controller: generic
+    annotations: {}
+    ingressClassName: ""
+    hostname: ""
+    path: /
+    pathType: Prefix
+    tls: false
+
+controller:
+  replicas: 2
+  resources:
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+    requests:
+      cpu: "250m"
+      memory: "256Mi"
+
+repoServer:
+  resources:
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+    requests:
+      cpu: "250m"
+      memory: "256Mi"
+
+applicationSet:
+  enabled: true

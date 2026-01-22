@@ -57,3 +57,9 @@ variable "node_count" {
   type        = number
   default     = 2
 }
+
+variable "eks_access_entries" {
+  description = "List of IAM principal ARNs (users or roles) that need access to the EKS cluster. If empty, uses the current AWS caller identity."
+  type        = list(string)
+  default     = []
+}

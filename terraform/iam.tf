@@ -53,3 +53,32 @@ resource "aws_iam_role_policy_attachment" "eks_node_group_policy" {
   role       = aws_iam_role.eks_node_group.name
 }
 
+# EKS Access Entry untuk IAM user yang akan diakses EKS cluster
+data "aws_caller_identity" "current" {} # output: arn:aws:iam::859842719537:user/inituser
+
+locals {
+  eks_access_principals = length(var.eks_access_entries) > 0 ? var.eks_access_entries : [data.aws_caller_identity.current.arn]
+}
+
+resource "aws_eks_access_entry" "main" {
+  for_each = toset(local.eks_access_principals)
+
+  cluster_name      = aws_eks_cluster.main.name
+  principal_arn     = each.value
+  kubernetes_groups = []
+  type              = "STANDARD"
+}
+
+resource "aws_eks_access_policy_association" "cluster_admin" {
+  for_each = toset(local.eks_access_principals)
+
+  cluster_name  = aws_eks_cluster.main.name
+  policy_arn    = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
+  principal_arn = each.value
+
+  access_scope {
+    type = "cluster"
+  }
+
+  depends_on = [aws_eks_access_entry.main]
+}
