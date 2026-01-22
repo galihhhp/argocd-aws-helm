@@ -34,7 +34,7 @@ data "aws_iam_policy_document" "eks_node_group_assume_role" {
     ]
     principals {
       type        = "Service"
-      identifiers = ["eks.amazonaws.com"]
+      identifiers = ["ec2.amazonaws.com"]
     }
   }
 }

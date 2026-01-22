@@ -28,10 +28,16 @@ variable "private_subnet_cidr" {
   default     = "10.0.2.0/24"
 }
 
-variable "availability_zone" {
+variable "availability_zone_1a" {
   description = "Availability zone for subnets"
   type        = string
   default     = "ap-southeast-1a"
+}
+
+variable "availability_zone_1b" {
+  description = "Availability zone for subnets"
+  type        = string
+  default     = "ap-southeast-1b"
 }
 
 variable "cluster_name" {
@@ -43,7 +49,7 @@ variable "cluster_name" {
 variable "node_instance_type" {
   description = "EKS node instance type"
   type        = string
-  default     = "t3.medium"
+  default     = "t3.small"
 }
 
 variable "node_count" {
