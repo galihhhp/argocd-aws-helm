@@ -1,0 +1,37 @@
+---
+namespace: "production"
+environment: "production"
+
+networkPolicy:
+  enabled: true
+
+postgresql:
+  enabled: true
+  fullnameOverride: "database"
+  image:
+    registry: docker.io
+    repository: bitnami/postgresql
+    tag: "latest"
+  auth:
+    postgresPassword: ""
+    username: "postgres"
+    password: ""
+    database: "postgres"
+  primary:
+    initdb:
+      scripts:
+        init.sql: |
+          CREATE TABLE IF NOT EXISTS main_table (
+              id SERIAL PRIMARY KEY,
+              task VARCHAR(255) NOT NULL
+          );
+    persistence:
+      enabled: true
+      size: 20Gi
+    resources:
+      requests:
+        cpu: "500m"
+        memory: "512Mi"
+      limits:
+        cpu: "2"
+        memory: "2Gi"

@@ -1,0 +1,5 @@
+{{- range $component, $values := .Values }}
+{{- if and (ne $component "namespace") (ne $component "environment") (ne $component "postgresql") (ne $component "networkPolicy") (kindIs "map" $values) (hasKey $values "enabled") }}
+{{- include "backend.component.configmap" (dict "component" $component "values" $values "Values" $.Values) }}
+{{- end }}
+{{- end }}

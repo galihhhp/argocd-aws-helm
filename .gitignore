@@ -7,3 +7,9 @@ terraform.tfstate.backup
 crash.log
 crash.*.log
 .DS_Store
+
+# Helm charts dependencies
+# charts/ folder contains downloaded dependencies (can be regenerated with 'helm dependency update')
+apps/*/charts/
+# Packaged charts
+*.tgz

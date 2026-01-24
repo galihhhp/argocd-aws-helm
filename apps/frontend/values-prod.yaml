@@ -1,0 +1,35 @@
+---
+namespace: "production"
+environment: "production"
+
+networkPolicy:
+  enabled: true
+
+frontend:
+  enabled: true
+  replicaCount: 3
+  name: "frontend"
+  serviceAccountName: "frontend"
+  automountServiceAccountToken: false
+  labels:
+    app: "frontend"
+    tier: "ui"
+    app.kubernetes.io/name: "frontend"
+    app.kubernetes.io/instance: "frontend"
+    app.kubernetes.io/component: "frontend"
+  image:
+    name: "galihhhp/react-frontend"
+    tag: "2.0.0"
+    pullPolicy: "IfNotPresent"
+    containerPort: 80
+  service:
+    type: ClusterIP
+    port: 80
+    targetPort: 80
+  env:
+    API_URL: "http://localhost:3000"
+    FEATURE_EDIT_TASK: "true"
+    FEATURE_DELETE_TASK: "true"
+    VITE_APP_VERSION: "2.0.0"
+    FEATURE_SHOW_TASKS: "true"
+    FEATURE_SHOW_USERS: "false"

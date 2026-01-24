@@ -1,0 +1,11 @@
+apiVersion: v2
+name: database
+description: A Helm chart for PostgreSQL database using Bitnami PostgreSQL
+type: application
+version: 0.1.0
+appVersion: "17"
+dependencies:
+  - name: postgresql
+    version: "18.2.0"
+    repository: "oci://registry-1.docker.io/bitnamicharts"
+    condition: postgresql.enabled
