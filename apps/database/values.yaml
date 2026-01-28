@@ -12,9 +12,9 @@ postgresql:
     repository: bitnami/postgresql
     tag: "17"
   auth:
-    postgresPassword: ""
+    postgresPassword: "devpassword123"
     username: "postgres"
-    password: ""
+    password: "devpassword123"
     database: "postgres"
   primary:
     initdb:
